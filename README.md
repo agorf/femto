@@ -38,7 +38,7 @@ Additionally, I've implemented:
 ## Usage
 
 ~~~ sh
-ruby femto.rb myfile.txt
+./femto.rb myfile.txt
 ~~~
 
 ## Disclaimer
