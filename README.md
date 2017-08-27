@@ -30,7 +30,7 @@ Additionally, I've also implemented:
 ## Usage
 
 ~~~ sh
-ruby editor.rb myfile.txt
+ruby femto.rb myfile.txt
 ~~~
 
 ## Disclaimer
