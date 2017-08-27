@@ -1,0 +1,3 @@
+- Fix screen flickering
+- Join lines with backspace
+- Join lines with delete
