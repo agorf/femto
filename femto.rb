@@ -42,19 +42,19 @@ module Femto
 
       case char
       when "\cq" then quit
+      when "\cs" then save
       when "\cp" then up
       when "\cn" then down
       when "\cf" then right
       when "\cb" then left
-      when "\ch" then backspace
-      when "\cd" then delete
-      when "\cs" then save
-      when "\r"  then enter
-      when "\c_" then undo
       when "\ca" then line_home
       when "\ce" then line_end
+      when "\ch" then backspace
+      when "\cd" then delete
       when "\cu" then delete_before
       when "\ck" then delete_after
+      when "\c_" then undo
+      when "\r"  then enter
       else
         insert_char(char) if char =~ /[[:print:]]/
       end
