@@ -29,8 +29,8 @@ Additionally, the following "features" have been implemented:
 * Deleting the character at the cursor, like delete (`Ctrl-D`)
 * Deleting the character at the cursor (`Ctrl-D`) when at the end of a line
   joins lines
-* Deleting the text before the cursor (`Ctrl-U`)
-* Deleting the text after (and including) the cursor (`Ctrl-K`)
+* Deleting the line text before the cursor (`Ctrl-U`)
+* Deleting the line text after (and including) the cursor (`Ctrl-K`)
 
 [screencast]: https://www.destroyallsoftware.com/screencasts/catalog/text-editor-from-scratch
 [Gary Bernhardt]: https://twitter.com/garybernhardt
