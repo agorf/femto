@@ -26,7 +26,7 @@ class Editor
 
   private
 
-  attr_reader :buffer, :cursor
+  attr_reader :buffer, :cursor, :snapshots
 
   def render
     reset_screen
@@ -113,9 +113,9 @@ class Editor
   end
 
   def undo
-    return if @snapshots.empty?
+    return if snapshots.empty?
 
-    @buffer, @cursor = @snapshots.pop
+    @buffer, @cursor = snapshots.pop
   end
 
   def insert_char(char)
@@ -126,7 +126,7 @@ class Editor
   end
 
   def store_snapshot
-    @snapshots << [buffer, cursor]
+    snapshots << [buffer, cursor]
   end
 
   def line_home
