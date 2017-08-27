@@ -1,7 +1,6 @@
 # femto
 
-A very basic text editor written for educational purposes in plain Ruby with no
-dependencies.
+A minimal text editor written for fun in plain Ruby with no dependencies.
 
 It was written from memory after watching the [relevant screencast][screencast]
 by [Gary Bernhardt][] and supports:
