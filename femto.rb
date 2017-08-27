@@ -278,7 +278,7 @@ module Femto
     end
 
     def enter(buffer)
-      Cursor.new(row + 1, 0).clamp(buffer)
+      down(buffer).line_home
     end
 
     def line_home
