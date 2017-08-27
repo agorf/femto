@@ -3,8 +3,8 @@
 A very basic text editor written for educational purposes in plain Ruby with no
 dependencies.
 
-I wrote it from memory after watching the "text editor from scratch" [Destroy
-All Software][DAS] [screencast][] by [Gary Bernhardt][]. It supports:
+It was written from memory after watching the [relevant screencast][screencast]
+by [Gary Bernhardt][] and supports:
 
 * Quitting (`Ctrl-Q`)
 * Moving the cursor up/down/right/left (`Ctrl-P`/`N`/`F`/`B`)
@@ -12,7 +12,7 @@ All Software][DAS] [screencast][] by [Gary Bernhardt][]. It supports:
 * Breaking a line (`Enter`)
 * Undoing! (`Ctrl-_`)
 
-Additionally, I've implemented:
+Additionally, the following "features" have been implemented:
 
 * Flicker-free screen
 * Creating a file if it doesn't exist (not just editing)
@@ -33,7 +33,6 @@ Additionally, I've implemented:
 * Deleting the text after (and including) the cursor (`Ctrl-K`)
 
 [screencast]: https://www.destroyallsoftware.com/screencasts/catalog/text-editor-from-scratch
-[DAS]: https://www.destroyallsoftware.com/
 [Gary Bernhardt]: https://twitter.com/garybernhardt
 
 ## Usage
