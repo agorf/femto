@@ -11,7 +11,8 @@ by [Gary Bernhardt][] and supports:
 * Breaking a line (`Enter`)
 * Undoing!
 
-Additionally, the following "features" have been implemented:
+Additionally, the following "features" have been implemented (not covered in the
+screencast):
 
 * Flicker-free screen
 * Creating a file if it doesn't exist (not just editing)
