@@ -18,14 +18,14 @@ Additionally, I've also implemented:
 * Flicker-free screen
 * Creating a file if it doesn't exist (not just editing)
 * Saving (`Ctrl-S`)
-* Moving left at the beginning of a line causes the cursor to jump to the end of
-  the previous line
-* Moving right at the end of a line causes the cursor to jump to the beginning
-  of the next line
+* Moving left (`Ctrl-B`) at the beginning of a line causes the cursor to jump to
+  the end of the previous line
+* Moving right (`Ctrl-F`) at the end of a line causes the cursor to jump to the
+  beginning of the next line
 * Moving the cursor to the beginning of the line (`Ctrl-A`)
 * Moving the cursor to the end of the line (`Ctrl-E`)
-* Deleting the character before the cursor at the beginning of a line joins
-  lines
+* Deleting the character before the cursor (`Ctrl-H`) at the beginning of a line
+  joins lines
 * Deleting the character at the cursor, like delete (`Ctrl-D`)
 * Deleting the text before the cursor (`Ctrl-U`)
 * Deleting the text after (and including) the cursor (`Ctrl-K`)
