@@ -17,6 +17,10 @@ Additionally, I've also implemented:
 
 * Flicker-free screen
 * Saving (`Ctrl-S`)
+* Moving left at the beginning of a line causes the cursor to jump to the end of
+  the previous line
+* Moving right at the end of a line causes the cursor to jump to the beginning
+  of the next line
 * Moving the cursor to the beginning of the line (`Ctrl-A`)
 * Moving the cursor to the end of the line (`Ctrl-E`)
 * Deleting the character at the cursor, like delete (`Ctrl-D`)
