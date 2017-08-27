@@ -20,6 +20,8 @@ class Editor
     end
   end
 
+  private
+
   def render
     ANSI.move_cursor(0, 0)
     ANSI.clear_screen
@@ -166,10 +168,6 @@ class Buffer
     lines[row].size
   end
 
-  def dup_lines
-    lines.map(&:dup)
-  end
-
   def delete_char(row, col)
     new_lines = dup_lines
     new_lines[row].slice!(col)
@@ -198,6 +196,12 @@ class Buffer
     new_lines = dup_lines
     new_lines[row][col..-1] = ''
     Buffer.new(new_lines)
+  end
+
+  private
+
+  def dup_lines
+    lines.map(&:dup)
   end
 end
 
