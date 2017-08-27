@@ -10,7 +10,7 @@ by [Gary Bernhardt][] and supports:
 * Moving the cursor up/down/right/left (`Ctrl-P`/`N`/`F`/`B`)
 * Deleting the character before the cursor, like backspace (`Ctrl-H`)
 * Breaking a line (`Enter`)
-* Undoing! (`Ctrl-_`)
+* Undoing! (`Ctrl--`)
 
 Additionally, the following "features" have been implemented:
 
