@@ -29,8 +29,7 @@ class Editor
   attr_reader :buffer, :cursor
 
   def render
-    ANSI.move_cursor(0, 0)
-    ANSI.clear_screen
+    reset_screen
     buffer.print
     ANSI.move_cursor(cursor.row, cursor.col)
   end
@@ -59,8 +58,7 @@ class Editor
   end
 
   def quit
-    ANSI.move_cursor(0, 0)
-    ANSI.clear_screen
+    reset_screen
     exit
   end
 
@@ -150,6 +148,11 @@ class Editor
     store_snapshot
 
     @buffer = buffer.delete_after(cursor.row, cursor.col)
+  end
+
+  def reset_screen
+    ANSI.move_cursor(0, 0)
+    ANSI.clear_screen
   end
 end
 
