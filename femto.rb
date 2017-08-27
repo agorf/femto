@@ -265,7 +265,7 @@ module Femto
     def right(buffer)
       return Cursor.new(row, col + 1) unless end_of_line?(buffer)
 
-      return self if end_of_file?(buffer)
+      return self if final_line?(buffer)
 
       Cursor.new(row + 1, 0)
     end
@@ -300,8 +300,12 @@ module Femto
       col == buffer.line_length(row)
     end
 
+    def final_line?(buffer)
+      row == buffer.lines_count - 1
+    end
+
     def end_of_file?(buffer)
-      row == buffer.lines_count - 1 && end_of_line?(buffer)
+      final_line?(buffer) && end_of_line?(buffer)
     end
 
     def beginning_of_file?
