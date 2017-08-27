@@ -24,6 +24,21 @@ Additionally, I've also implemented:
 [DAS]: https://www.destroyallsoftware.com/
 [Gary Bernhardt]: https://twitter.com/garybernhardt
 
+## Usage
+
+~~~ sh
+ruby editor.rb myfile.txt
+~~~
+
+## Disclaimer
+
+This is an experimental program. Do NOT use it to edit files that you don't want
+to lose/damage.
+
+## License
+
+[The Unlicense](https://github.com/agorf/das-editor/blob/master/LICENSE)
+
 ## Author
 
 Angelos Orfanakos, <https://agorf.gr/>
