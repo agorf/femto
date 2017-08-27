@@ -16,6 +16,7 @@ Additionally, I've implemented:
 
 * Flicker-free screen
 * Creating a file if it doesn't exist (not just editing)
+* Ignoring non-printable characters
 * Saving (`Ctrl-S`)
 * Moving left (`Ctrl-B`) at the beginning of a line causes the cursor to jump to
   the end of the previous line
