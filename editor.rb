@@ -2,12 +2,13 @@ require 'io/console'
 
 class Editor
   def initialize(filename)
-    @filename = filename
-    data      = File.read(filename)
-    @line_sep = data["\r\n"] || "\n"
-    lines     = data.split(@line_sep)
-    @buffer   = Buffer.new(lines)
-    @cursor   = Cursor.new
+    @filename  = filename
+    data       = File.read(filename)
+    @line_sep  = data["\r\n"] || "\n"
+    lines      = data.split(@line_sep)
+    @buffer    = Buffer.new(lines)
+    @cursor    = Cursor.new
+    @snapshots = []
   end
 
   def run
@@ -69,11 +70,15 @@ class Editor
   def backspace
     return if @cursor.col == 0
 
+    store_snapshot
+
     @buffer = @buffer.delete_char(@cursor.row, @cursor.col - 1)
     @cursor = @cursor.left(@buffer)
   end
 
   def delete
+    store_snapshot
+
     @buffer = @buffer.delete_char(@cursor.row, @cursor.col)
   end
 
@@ -84,17 +89,27 @@ class Editor
   end
 
   def enter
+    store_snapshot
+
     @buffer = @buffer.break_line(@cursor.row, @cursor.col)
     @cursor = @cursor.enter(@buffer)
   end
 
   def undo
-    raise NotImplementedError
+    return if @snapshots.empty?
+
+    @buffer, @cursor = @snapshots.pop
   end
 
   def insert_char(char)
+    store_snapshot
+
     @buffer = @buffer.insert_char(char, @cursor.row, @cursor.col)
     @cursor = @cursor.right(@buffer)
+  end
+
+  def store_snapshot
+    @snapshots << [@buffer, @cursor]
   end
 end
 
