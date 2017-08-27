@@ -151,22 +151,26 @@ class Buffer
     lines[row].size
   end
 
+  def dup_lines
+    lines.map(&:dup)
+  end
+
   def delete_char(row, col)
-    dup_lines = lines.map(&:dup)
-    dup_lines[row].slice!(col)
-    Buffer.new(dup_lines)
+    new_lines = dup_lines
+    new_lines[row].slice!(col)
+    Buffer.new(new_lines)
   end
 
   def insert_char(char, row, col)
-    dup_lines = lines.map(&:dup)
-    dup_lines[row].insert(col, char)
-    Buffer.new(dup_lines)
+    new_lines = dup_lines
+    new_lines[row].insert(col, char)
+    Buffer.new(new_lines)
   end
 
   def break_line(row, col)
-    dup_lines = lines.map(&:dup)
-    dup_lines[row..row] = [dup_lines[row][0...col], dup_lines[row][col..-1]]
-    Buffer.new(dup_lines)
+    new_lines = dup_lines
+    new_lines[row..row] = [new_lines[row][0...col], new_lines[row][col..-1]]
+    Buffer.new(new_lines)
   end
 end
 
