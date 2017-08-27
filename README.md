@@ -16,6 +16,7 @@ the screencast. It supports:
 Additionally, I've also implemented:
 
 * Flicker-free screen
+* Creating a file if it doesn't exist (not just editing)
 * Saving (`Ctrl-S`)
 * Moving left at the beginning of a line causes the cursor to jump to the end of
   the previous line

@@ -4,7 +4,7 @@ module Femto
   class Editor
     def initialize(filename)
       @filename  = filename
-      data       = File.read(filename)
+      data       = File.read(filename) rescue ''
       @line_sep  = data["\r\n"] || "\n"
       lines      = data.split(line_sep)
       @buffer    = Buffer.new(lines)
