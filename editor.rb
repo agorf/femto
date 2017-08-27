@@ -22,11 +22,13 @@ class Editor
 
   private
 
+  attr_reader :buffer, :cursor
+
   def render
     ANSI.move_cursor(0, 0)
     ANSI.clear_screen
-    @buffer.print
-    ANSI.move_cursor(@cursor.row, @cursor.col)
+    buffer.print
+    ANSI.move_cursor(cursor.row, cursor.col)
   end
 
   def handle_input
@@ -59,38 +61,38 @@ class Editor
   end
 
   def up
-    @cursor = @cursor.up(@buffer)
+    @cursor = cursor.up(buffer)
   end
 
   def down
-    @cursor = @cursor.down(@buffer)
+    @cursor = cursor.down(buffer)
   end
 
   def right
-    @cursor = @cursor.right(@buffer)
+    @cursor = cursor.right(buffer)
   end
 
   def left
-    @cursor = @cursor.left(@buffer)
+    @cursor = cursor.left(buffer)
   end
 
   def backspace
-    return if @cursor.col == 0
+    return if cursor.col == 0
 
     store_snapshot
 
-    @buffer = @buffer.delete_char(@cursor.row, @cursor.col - 1)
-    @cursor = @cursor.left(@buffer)
+    @buffer = buffer.delete_char(cursor.row, cursor.col - 1)
+    @cursor = cursor.left(buffer)
   end
 
   def delete
     store_snapshot
 
-    @buffer = @buffer.delete_char(@cursor.row, @cursor.col)
+    @buffer = buffer.delete_char(cursor.row, cursor.col)
   end
 
   def data
-    data = @buffer.lines.join(@line_sep).chomp(@line_sep)
+    data = buffer.lines.join(@line_sep).chomp(@line_sep)
     data << @line_sep unless data.empty?
     data
   end
@@ -104,8 +106,8 @@ class Editor
   def enter
     store_snapshot
 
-    @buffer = @buffer.break_line(@cursor.row, @cursor.col)
-    @cursor = @cursor.enter(@buffer)
+    @buffer = buffer.break_line(cursor.row, cursor.col)
+    @cursor = cursor.enter(buffer)
   end
 
   def undo
@@ -117,33 +119,33 @@ class Editor
   def insert_char(char)
     store_snapshot
 
-    @buffer = @buffer.insert_char(char, @cursor.row, @cursor.col)
-    @cursor = @cursor.right(@buffer)
+    @buffer = buffer.insert_char(char, cursor.row, cursor.col)
+    @cursor = cursor.right(buffer)
   end
 
   def store_snapshot
-    @snapshots << [@buffer, @cursor]
+    @snapshots << [buffer, cursor]
   end
 
   def line_home
-    @cursor = @cursor.line_home(@buffer)
+    @cursor = cursor.line_home(buffer)
   end
 
   def line_end
-    @cursor = @cursor.line_end(@buffer)
+    @cursor = cursor.line_end(buffer)
   end
 
   def delete_before
     store_snapshot
 
-    @buffer = @buffer.delete_before(@cursor.row, @cursor.col)
+    @buffer = buffer.delete_before(cursor.row, cursor.col)
     line_home
   end
 
   def delete_after
     store_snapshot
 
-    @buffer = @buffer.delete_after(@cursor.row, @cursor.col)
+    @buffer = buffer.delete_after(cursor.row, cursor.col)
   end
 end
 
