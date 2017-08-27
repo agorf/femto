@@ -26,7 +26,7 @@ class Editor
 
   private
 
-  attr_reader :buffer, :cursor, :snapshots
+  attr_reader :buffer, :cursor, :snapshots, :line_sep
 
   def render
     reset_screen
