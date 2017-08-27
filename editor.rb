@@ -11,6 +11,10 @@ class Editor
     @snapshots = []
   end
 
+  def self.open(filename)
+    new(filename).run
+  end
+
   def run
     IO.console.raw do
       loop do
@@ -260,4 +264,4 @@ module ANSI
   end
 end
 
-Editor.new(ARGV[0]).run
+Editor.open(ARGV[0])
