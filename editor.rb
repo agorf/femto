@@ -87,9 +87,15 @@ class Editor
     @buffer = @buffer.delete_char(@cursor.row, @cursor.col)
   end
 
+  def data
+    data = @buffer.lines.join(@line_sep).chomp(@line_sep)
+    data << @line_sep unless data.empty?
+    data
+  end
+
   def save
     open(@filename, 'w') do |f|
-      f << @buffer.data(@line_sep)
+      f << data
     end
   end
 
@@ -150,12 +156,6 @@ class Buffer
     lines.each do |line|
       $stdout.print "#{line}\r\n"
     end
-  end
-
-  def data(line_sep)
-    data = lines.join(line_sep).chomp(line_sep)
-    data << line_sep unless data.empty?
-    data
   end
 
   def lines_count
