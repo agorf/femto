@@ -41,6 +41,8 @@ class Editor
     when "\cs" then save
     when "\r"  then enter
     when "\c_" then undo
+    when "\ca" then line_home
+    when "\ce" then line_end
     else
       insert_char(char) if char =~ /[[:print:]]/
     end
@@ -110,6 +112,14 @@ class Editor
 
   def store_snapshot
     @snapshots << [@buffer, @cursor]
+  end
+
+  def line_home
+    @cursor = @cursor.line_home(@buffer)
+  end
+
+  def line_end
+    @cursor = @cursor.line_end(@buffer)
   end
 end
 
@@ -191,6 +201,14 @@ class Cursor
 
   def enter(buffer)
     Cursor.new(row + 1, 0).clamp(buffer)
+  end
+
+  def line_home(buffer)
+    Cursor.new(row, 0).clamp(buffer)
+  end
+
+  def line_end(buffer)
+    Cursor.new(row, buffer.line_length(row)).clamp(buffer)
   end
 end
 
