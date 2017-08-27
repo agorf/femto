@@ -6,7 +6,7 @@ module Femto
   class Editor
     def initialize(filename)
       @filename  = filename
-      data       = File.read(filename) rescue ''
+      data       = read_file_data
       @line_sep  = data["\r\n"] || "\n"
       lines      = data.split(line_sep)
       @buffer    = Buffer.new(lines)
@@ -181,6 +181,14 @@ module Femto
 
       blank_lines = buffer.lines.map {|line| ' ' * line.size }
       @blank_buffer = Buffer.new(blank_lines)
+    end
+
+    def read_file_data
+      if File.exist?(filename)
+        File.read(filename)
+      else
+        ''
+      end
     end
   end
 
