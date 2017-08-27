@@ -128,7 +128,7 @@ class Editor
   end
 
   def line_home
-    @cursor = cursor.line_home(buffer)
+    @cursor = cursor.line_home
   end
 
   def line_end
@@ -241,12 +241,12 @@ class Cursor
     Cursor.new(row + 1, 0).clamp(buffer)
   end
 
-  def line_home(buffer)
-    Cursor.new(row, 0).clamp(buffer)
+  def line_home
+    Cursor.new(row, 0)
   end
 
   def line_end(buffer)
-    Cursor.new(row, buffer.line_length(row)).clamp(buffer)
+    Cursor.new(row, buffer.line_length(row))
   end
 end
 
