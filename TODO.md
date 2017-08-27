@@ -1,3 +1,3 @@
 - Join lines with backspace
-- Make left/right span lines
+- Make right span lines
 - Write tests

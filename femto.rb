@@ -260,7 +260,11 @@ module Femto
     end
 
     def left(buffer)
-      Cursor.new(row, col - 1).clamp(buffer)
+      return Cursor.new(row, col - 1) if col > 0
+
+      return self if row == 0
+
+      Cursor.new(row - 1, buffer.line_length(row - 1))
     end
 
     def clamp(buffer)
