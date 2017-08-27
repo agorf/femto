@@ -33,7 +33,7 @@ module Femto
 
     def render
       clear_screen
-      buffer.print
+      print buffer
       ANSI.move_cursor(cursor.row, cursor.col)
     end
 
@@ -168,7 +168,7 @@ module Femto
       ANSI.move_cursor(0, 0)
 
       if blank_buffer
-        blank_buffer.print # overwrite screen with spaces
+        print blank_buffer # overwrite screen with spaces
         ANSI.move_cursor(0, 0)
       end
 
@@ -184,10 +184,8 @@ module Femto
       @lines = lines
     end
 
-    def print
-      lines.each do |line|
-        $stdout.print "#{line}\r\n"
-      end
+    def to_s
+      lines.map {|line| "#{line}\r\n" }.join
     end
 
     def lines_count
