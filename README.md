@@ -23,6 +23,8 @@ Additionally, I've also implemented:
   of the next line
 * Moving the cursor to the beginning of the line (`Ctrl-A`)
 * Moving the cursor to the end of the line (`Ctrl-E`)
+* Deleting the character before the cursor at the beginning of a line joins
+  lines
 * Deleting the character at the cursor, like delete (`Ctrl-D`)
 * Deleting the text before the cursor (`Ctrl-U`)
 * Deleting the text after (and including) the cursor (`Ctrl-K`)

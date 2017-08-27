@@ -82,12 +82,18 @@ module Femto
     end
 
     def backspace
-      return if cursor.col == 0
+      return if cursor.beginning_of_file?
 
       store_snapshot
 
-      @buffer = buffer.delete_char(cursor.row, cursor.col - 1)
-      @cursor = cursor.left(buffer)
+      if cursor.col == 0
+        cursor_left = buffer.lines[cursor.row].size + 1
+        @buffer = buffer.join_lines(cursor.row - 1)
+        cursor_left.times { @cursor = cursor.left(buffer) }
+      else
+        @buffer = buffer.delete_char(cursor.row, cursor.col - 1)
+        @cursor = cursor.left(buffer)
+      end
     end
 
     def delete
@@ -295,6 +301,10 @@ module Femto
 
     def end_of_file?(buffer)
       row == buffer.lines_count - 1 && end_of_line?(buffer)
+    end
+
+    def beginning_of_file?
+      row == 0 && col == 0
     end
   end
 
