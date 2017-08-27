@@ -17,11 +17,11 @@ Additionally, I've also implemented:
 
 * Flicker-free screen
 * Saving (`Ctrl-S`)
+* Moving the cursor to the beginning of the line (`Ctrl-A`)
+* Moving the cursor to the end of the line (`Ctrl-E`)
 * Deleting the character at the cursor, like delete (`Ctrl-D`)
 * Deleting the text before the cursor (`Ctrl-U`)
 * Deleting the text after (and including) the cursor (`Ctrl-K`)
-* Moving the cursor to the beginning of the line (`Ctrl-A`)
-* Moving the cursor to the end of the line (`Ctrl-E`)
 
 [screencast]: https://www.destroyallsoftware.com/screencasts/catalog/text-editor-from-scratch
 [DAS]: https://www.destroyallsoftware.com/
