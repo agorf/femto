@@ -39,20 +39,20 @@ class Editor
     char = $stdin.getc
 
     case char
-    when "\cq" then quit # not in DAS
+    when "\cq" then quit
     when "\cp" then up
     when "\cn" then down
     when "\cf" then right
     when "\cb" then left
     when "\ch" then backspace
-    when "\cd" then delete # not in DAS
-    when "\cs" then save # not in DAS
+    when "\cd" then delete
+    when "\cs" then save
     when "\r"  then enter
     when "\c_" then undo
-    when "\ca" then line_home # not in DAS
-    when "\ce" then line_end # not in DAS
-    when "\cu" then delete_before # not in DAS
-    when "\ck" then delete_after # not in DAS
+    when "\ca" then line_home
+    when "\ce" then line_end
+    when "\cu" then delete_before
+    when "\ck" then delete_after
     else
       insert_char(char) if char =~ /[[:print:]]/
     end
