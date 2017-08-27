@@ -18,6 +18,7 @@ Additionally, the following "features" have been implemented:
 * Creating a file if it doesn't exist (not just editing)
 * Ignoring non-printable characters
 * Saving (`Ctrl-S`)
+* Redoing! (`Ctrl-R`)
 * Moving left (`Ctrl-B`) at the beginning of a line causes the cursor to jump to
   the end of the previous line
 * Moving right (`Ctrl-F`) at the end of a line causes the cursor to jump to the
