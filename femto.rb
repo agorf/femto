@@ -210,6 +210,7 @@ module Femto
 
     def insert_char(char, row, col)
       new_lines = dup_lines
+      new_lines[row] ||= '' # in case the file is empty
       new_lines[row].insert(col, char)
       Buffer.new(new_lines)
     end
