@@ -91,7 +91,7 @@ module Femto
     end
 
     def delete
-      return if cursor.screen_end?(buffer)
+      return if cursor.end_of_file?(buffer)
 
       store_snapshot
 
@@ -256,7 +256,11 @@ module Femto
     end
 
     def right(buffer)
-      Cursor.new(row, col + 1).clamp(buffer)
+      return Cursor.new(row, col + 1) unless end_of_line?(buffer)
+
+      return self if end_of_file?(buffer)
+
+      Cursor.new(row + 1, 0)
     end
 
     def left(buffer)
@@ -289,8 +293,8 @@ module Femto
       col == buffer.line_length(row)
     end
 
-    def screen_end?(buffer)
-      row == buffer.lines_count - 1 && col == buffer.line_length(row)
+    def end_of_file?(buffer)
+      row == buffer.lines_count - 1 && end_of_line?(buffer)
     end
   end
 
