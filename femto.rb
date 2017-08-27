@@ -91,9 +91,15 @@ module Femto
     end
 
     def delete
+      return if cursor.screen_end?(buffer)
+
       store_snapshot
 
-      @buffer = buffer.delete_char(cursor.row, cursor.col)
+      if cursor.end_of_line?(buffer)
+        @buffer = buffer.join_lines(cursor.row)
+      else
+        @buffer = buffer.delete_char(cursor.row, cursor.col)
+      end
     end
 
     def data
@@ -222,6 +228,12 @@ module Femto
       Buffer.new(new_lines)
     end
 
+    def join_lines(row)
+      new_lines = dup_lines
+      new_lines[row..row + 1] = new_lines[row..row + 1].join
+      Buffer.new(new_lines)
+    end
+
     private
 
     def dup_lines
@@ -269,6 +281,14 @@ module Femto
 
     def line_end(buffer)
       Cursor.new(row, buffer.line_length(row))
+    end
+
+    def end_of_line?(buffer)
+      col == buffer.line_length(row)
+    end
+
+    def screen_end?(buffer)
+      row == buffer.lines_count - 1 && col == buffer.line_length(row)
     end
   end
 
