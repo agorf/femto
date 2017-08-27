@@ -115,9 +115,7 @@ module Femto
     end
 
     def save
-      open(@filename, 'w') do |f|
-        f << data
-      end
+      open(@filename, 'w') {|f| f << data }
     end
 
     def enter
