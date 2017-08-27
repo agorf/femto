@@ -26,6 +26,8 @@ Additionally, I've implemented:
 * Deleting the character before the cursor (`Ctrl-H`) at the beginning of a line
   joins lines
 * Deleting the character at the cursor, like delete (`Ctrl-D`)
+* Deleting the character at the cursor (`Ctrl-D`) when at the end of a line
+  joins lines
 * Deleting the text before the cursor (`Ctrl-U`)
 * Deleting the text after (and including) the cursor (`Ctrl-K`)
 
