@@ -31,7 +31,8 @@ module Femto
 
     private
 
-    attr_reader :buffer, :blank_buffer, :cursor, :snapshots, :line_sep
+    attr_reader :buffer, :blank_buffer, :cursor, :snapshots, :line_sep,
+      :filename
 
     def render
       clear_screen
@@ -117,7 +118,7 @@ module Femto
     end
 
     def save
-      open(@filename, 'w') {|f| f << data }
+      open(filename, 'w') {|f| f << data }
     end
 
     def enter
