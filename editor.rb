@@ -84,7 +84,8 @@ class Editor
   end
 
   def enter
-    raise NotImplementedError
+    @buffer = @buffer.break_line(@cursor.row, @cursor.col)
+    @cursor = @cursor.enter(@buffer)
   end
 
   def undo
@@ -135,6 +136,12 @@ class Buffer
     dup_lines[row].insert(col, char)
     Buffer.new(dup_lines)
   end
+
+  def break_line(row, col)
+    dup_lines = lines.map(&:dup)
+    dup_lines[row..row] = [dup_lines[row][0...col], dup_lines[row][col..-1]]
+    Buffer.new(dup_lines)
+  end
 end
 
 class Cursor
@@ -165,6 +172,10 @@ class Cursor
     @row = row.clamp(0, buffer.lines_count - 1)
     @col = col.clamp(0, buffer.line_length(row))
     self
+  end
+
+  def enter(buffer)
+    Cursor.new(row + 1, 0).clamp(buffer)
   end
 end
 
