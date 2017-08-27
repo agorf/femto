@@ -4,7 +4,8 @@ A very basic text editor written for educational purposes in plain Ruby with no
 dependencies.
 
 It is based on the "text editor from scratch" [Destroy All Software][DAS]
-[screencast][] by [Gary Bernhardt][] which supports:
+[screencast][] by [Gary Bernhardt][] and was written from memory after watching
+the screencast. It supports:
 
 * Quitting (`Ctrl-Q`)
 * Moving the cursor up/down/right/left (`Ctrl-P`/`N`/`F`/`B`)
