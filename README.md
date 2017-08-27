@@ -41,6 +41,23 @@ Additionally, the following "features" have been implemented:
 ./femto.rb myfile.txt
 ~~~
 
+## Keyboard shortcuts
+
+* `Ctrl-Q` quits
+* `Ctrl-S` saves
+* `Ctrl-P` moves the cursor up (mnemonic: previous)
+* `Ctrl-N` moves the cursor down (mnemonic: next)
+* `Ctrl-F` moves the cursor right (mnemonic: forward)
+* `Ctrl-B` moves the cursor left (mnemonic: backward)
+* `Ctrl-A` moves the cursor to the beginning of the line
+* `Ctrl-E` moves the cursor to the end of the line (mnemonic: end)
+* `Ctrl-E` deletes the previous character (backspace)
+* `Ctrl-D` deletes the current character (mnemonic: delete)
+* `Ctrl-U` deletes the line text before the cursor
+* `Ctrl-K` deletes the line text after (and including) the cursor
+* `Ctrl--` undoes the last change
+* `Ctrl-R` redoes the last change (mnemonic: redo)
+
 ## Disclaimer
 
 This is an experimental program. Do NOT use it to edit files that you don't want
