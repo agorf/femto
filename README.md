@@ -13,7 +13,7 @@ the screencast. It supports:
 * Breaking a line (`Enter`)
 * Undoing! (`Ctrl-_`)
 
-Additionally, I've also implemented:
+Additionally, I've implemented:
 
 * Flicker-free screen
 * Creating a file if it doesn't exist (not just editing)
