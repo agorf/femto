@@ -43,6 +43,8 @@ class Editor
     when "\c_" then undo
     when "\ca" then line_home
     when "\ce" then line_end
+    when "\cu" then delete_before
+    when "\ck" then delete_after
     else
       insert_char(char) if char =~ /[[:print:]]/
     end
@@ -122,6 +124,19 @@ class Editor
   def line_end
     @cursor = @cursor.line_end(@buffer)
   end
+
+  def delete_before
+    store_snapshot
+
+    @buffer = @buffer.delete_before(@cursor.row, @cursor.col)
+    line_home
+  end
+
+  def delete_after
+    store_snapshot
+
+    @buffer = @buffer.delete_after(@cursor.row, @cursor.col)
+  end
 end
 
 class Buffer
@@ -170,6 +185,18 @@ class Buffer
   def break_line(row, col)
     new_lines = dup_lines
     new_lines[row..row] = [new_lines[row][0...col], new_lines[row][col..-1]]
+    Buffer.new(new_lines)
+  end
+
+  def delete_before(row, col)
+    new_lines = dup_lines
+    new_lines[row][0...col] = ''
+    Buffer.new(new_lines)
+  end
+
+  def delete_after(row, col)
+    new_lines = dup_lines
+    new_lines[row][col..-1] = ''
     Buffer.new(new_lines)
   end
 end
