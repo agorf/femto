@@ -317,4 +317,8 @@ module Femto
   end
 end
 
-Femto::Editor.open(ARGV[0])
+begin
+  Femto::Editor.open(ARGV.fetch(0))
+rescue IndexError
+  puts "Usage: #$0 file"
+end
