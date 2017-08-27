@@ -49,6 +49,7 @@ class Editor
   end
 
   def quit
+    ANSI.move_cursor(0, 0)
     ANSI.clear_screen
     exit
   end
