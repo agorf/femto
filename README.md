@@ -1,4 +1,4 @@
-# das-editor
+# femto
 
 A very basic text editor written for educational purposes in plain Ruby with no
 dependencies.
@@ -40,7 +40,7 @@ to lose/damage.
 
 ## License
 
-[The Unlicense](https://github.com/agorf/das-editor/blob/master/LICENSE)
+[The Unlicense](https://github.com/agorf/femto/blob/master/LICENSE)
 
 ## Author
 
