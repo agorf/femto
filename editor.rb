@@ -17,6 +17,8 @@ class Editor
 
   def run
     IO.console.raw do
+      reset_screen
+
       loop do
         render
         handle_input
@@ -26,10 +28,10 @@ class Editor
 
   private
 
-  attr_reader :buffer, :cursor, :snapshots, :line_sep
+  attr_reader :buffer, :blank_buffer, :cursor, :snapshots, :line_sep
 
   def render
-    reset_screen
+    clear_screen
     buffer.print
     ANSI.move_cursor(cursor.row, cursor.col)
   end
@@ -153,6 +155,18 @@ class Editor
   def reset_screen
     ANSI.move_cursor(0, 0)
     ANSI.clear_screen
+  end
+
+  def clear_screen
+    ANSI.move_cursor(0, 0)
+
+    if blank_buffer
+      blank_buffer.print # overwrite screen with spaces
+      ANSI.move_cursor(0, 0)
+    end
+
+    blank_lines = buffer.lines.map {|line| ' ' * line.size }
+    @blank_buffer = Buffer.new(blank_lines)
   end
 end
 

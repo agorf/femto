@@ -15,6 +15,7 @@ the screencast. It supports:
 
 Additionally, I've also implemented:
 
+* Flicker-free screen
 * Saving (`Ctrl-S`)
 * Deleting the character at the cursor, like delete (`Ctrl-D`)
 * Moving the cursor to the beginning of the line (`Ctrl-A`)
