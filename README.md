@@ -2,8 +2,8 @@
 
 A minimal text editor written for fun in plain Ruby with no dependencies.
 
-It was written from memory after watching the [relevant screencast][screencast]
-by [Gary Bernhardt][] and supports:
+I wrote it from memory after watching the [relevant screencast][screencast] by
+[Gary Bernhardt][]. It supports:
 
 * Quitting
 * Moving the cursor up/down/right/left
@@ -11,12 +11,13 @@ by [Gary Bernhardt][] and supports:
 * Breaking a line (`Enter`)
 * Undoing!
 
-Additionally, the following "features" have been implemented (not covered in the
-screencast):
+## Additional functionality
+
+**femto** also implements the following (not covered in the screencast):
 
 * Flicker-free screen
-* Creating a file if it doesn't exist (not just editing)
 * Ignoring non-printable characters
+* Creating a file if it doesn't exist (not just editing)
 * Saving
 * Redoing!
 * Moving left at the beginning of a line causes the cursor to jump to the end of
@@ -32,11 +33,10 @@ screencast):
 * Deleting the line text before the cursor
 * Deleting the line text after (and including) the cursor
 
-Missing and scheduled features are recorded in [TODO.md][todo].
+## Roadmap
 
-[screencast]: https://www.destroyallsoftware.com/screencasts/catalog/text-editor-from-scratch
-[Gary Bernhardt]: https://twitter.com/garybernhardt
-[todo]: https://github.com/agorf/femto/blob/master/TODO.md
+* Tests
+* Scroll-buffer
 
 ## Usage
 
@@ -73,3 +73,6 @@ to lose/damage.
 ## Author
 
 Angelos Orfanakos, <https://agorf.gr/>
+
+[screencast]: https://www.destroyallsoftware.com/screencasts/catalog/text-editor-from-scratch
+[Gary Bernhardt]: https://twitter.com/garybernhardt
