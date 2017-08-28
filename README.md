@@ -32,8 +32,11 @@ screencast):
 * Deleting the line text before the cursor
 * Deleting the line text after (and including) the cursor
 
+Missing and scheduled features are recorded in [TODO.md][todo].
+
 [screencast]: https://www.destroyallsoftware.com/screencasts/catalog/text-editor-from-scratch
 [Gary Bernhardt]: https://twitter.com/garybernhardt
+[todo]: https://github.com/agorf/femto/blob/master/TODO.md
 
 ## Usage
 
