@@ -375,8 +375,10 @@ module Femto
   end
 end
 
-begin
-  Femto::Editor.open(ARGV.fetch(0))
-rescue IndexError
-  puts "Usage: #$0 file"
+if __FILE__ == $0
+  begin
+    Femto::Editor.open(ARGV.fetch(0))
+  rescue IndexError
+    puts "Usage: #$0 file"
+  end
 end
