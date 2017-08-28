@@ -2,6 +2,21 @@
 
 require 'io/console'
 
+unless 0.respond_to?(:clamp)
+  class Fixnum
+    def clamp(min, max)
+      if min > max
+        raise ArgumentError, 'min argument must be smaller than max argument'
+      end
+
+      return min if self <= min
+      return max if self >= max
+
+      self
+    end
+  end
+end
+
 module Femto
   class Editor
     def initialize(filename)
