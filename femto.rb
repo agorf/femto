@@ -2,7 +2,7 @@
 
 require 'io/console'
 
-unless 0.respond_to?(:clamp)
+unless Comparable.instance_methods.include?(:clamp)
   class Fixnum
     def clamp(min, max)
       if min > max
