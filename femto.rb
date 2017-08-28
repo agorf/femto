@@ -20,13 +20,13 @@ end
 module Femto
   class Editor
     def initialize(filename)
-      @filename  = filename
-      data       = read_file_data
-      @line_sep  = data["\r\n"] || "\n"
-      lines      = data.empty? ? [''] : data.split(line_sep)
-      @buffer    = Buffer.new(lines)
-      @cursor    = Cursor.new
-      @history   = History.new
+      @filename = filename
+      data      = read_file_data
+      @line_sep = data["\r\n"] || "\n"
+      lines     = data.empty? ? [''] : data.split(line_sep)
+      @buffer   = Buffer.new(lines)
+      @cursor   = Cursor.new
+      @history  = History.new
     end
 
     def self.open(filename)
