@@ -33,11 +33,6 @@ I wrote it from memory after watching the [relevant screencast][screencast] by
 * Deleting the line text before the cursor
 * Deleting the line text after (and including) the cursor
 
-## Roadmap
-
-* Tests
-* Scroll-buffer
-
 ## Usage
 
 ~~~ sh
@@ -60,6 +55,11 @@ I wrote it from memory after watching the [relevant screencast][screencast] by
 * `Ctrl-K` deletes the line text after (and including) the cursor
 * `Ctrl--` undoes the last change
 * `Ctrl-R` redoes the last change (mnemonic: redo)
+
+## Roadmap
+
+* Tests
+* Scroll-buffer
 
 ## Disclaimer
 
