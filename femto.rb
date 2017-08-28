@@ -23,8 +23,7 @@ module Femto
       @filename = filename
       data      = read_file_data
       @line_sep = data["\r\n"] || "\n"
-      lines     = data.empty? ? [''] : data.split(line_sep)
-      @buffer   = Buffer.new(lines)
+      @buffer   = Buffer.new(lines_from_data(data))
       @cursor   = Cursor.new
       @history  = History.new
     end
@@ -211,6 +210,14 @@ module Femto
         File.read(filename)
       else
         ''
+      end
+    end
+
+    def lines_from_data(data)
+      if data.empty?
+        ['']
+      else
+        data.split(line_sep)
       end
     end
   end
