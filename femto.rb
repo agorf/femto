@@ -11,7 +11,6 @@ unless Comparable.instance_methods.include?(:clamp)
 
       return min if self <= min
       return max if self >= max
-
       self
     end
   end
