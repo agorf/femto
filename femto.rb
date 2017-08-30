@@ -53,19 +53,19 @@ module Femto
     end
 
     def handle_input
-      char = $stdin.getc
+      char = read_char
 
       case char
       when "\cq" then quit
       when "\cs" then save
-      when "\cp" then up
-      when "\cn" then down
-      when "\cf" then right
-      when "\cb" then left
-      when "\ca" then line_home
-      when "\ce" then line_end
-      when "\ch" then backspace
-      when "\cd" then delete
+      when "\cp", "\e[A" then up
+      when "\cn", "\e[B" then down
+      when "\cf", "\e[C" then right
+      when "\cb", "\e[D" then left
+      when "\ca", "\e[7~" then line_home
+      when "\ce", "\e[8~" then line_end
+      when "\ch", "\177" then backspace
+      when "\cd", "\e[3~", "\004" then delete
       when "\cu" then delete_before
       when "\ck" then delete_after
       when "\c_" then history_undo
@@ -74,6 +74,25 @@ module Femto
       else
         insert_char(char) if char =~ /[[:print:]]/
       end
+    end
+
+    def read_char
+      char = $stdin.getc
+
+      return char if char != "\e"
+
+      maxlen = 3
+
+      begin
+        char << $stdin.read_nonblock(maxlen)
+      rescue IO::WaitReadable
+        return char if maxlen == 2
+
+        maxlen -= 1
+        retry
+      end
+
+      char
     end
 
     def quit

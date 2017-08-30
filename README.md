@@ -43,14 +43,14 @@ I wrote it from memory after watching the [relevant screencast][screencast] by
 
 * `Ctrl-Q` quits
 * `Ctrl-S` saves
-* `Ctrl-P` moves the cursor up (mnemonic: previous)
-* `Ctrl-N` moves the cursor down (mnemonic: next)
-* `Ctrl-F` moves the cursor right (mnemonic: forward)
-* `Ctrl-B` moves the cursor left (mnemonic: backward)
-* `Ctrl-A` moves the cursor to the beginning of the line
-* `Ctrl-E` moves the cursor to the end of the line (mnemonic: end)
-* `Ctrl-E` deletes the previous character (backspace)
-* `Ctrl-D` deletes the current character (mnemonic: delete)
+* `Ctrl-P` (mnemonic: previous), or the up arrow key, moves the cursor up
+* `Ctrl-N` (mnemonic: next), or the down arrow key, moves the cursor down
+* `Ctrl-F` (mnemonic: forward), or the right arrow key, moves the cursor right
+* `Ctrl-B` (mnemonic: backward), or the left arrow key, moves the cursor left
+* `Ctrl-A` or `Home` moves the cursor to the beginning of the line
+* `Ctrl-E` or `End` moves the cursor to the end of the line
+* `Ctrl-H` or `Backspace` deletes the previous character
+* `Ctrl-D` or `Delete` deletes the current character
 * `Ctrl-U` deletes the line text before the cursor
 * `Ctrl-K` deletes the line text after (and including) the cursor
 * `Ctrl--` undoes the last change
