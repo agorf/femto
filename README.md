@@ -13,7 +13,7 @@ I wrote it from memory after watching the [relevant screencast][screencast] by
 
 ## Additional functionality
 
-**femto** also implements the following (not covered in the screencast):
+The following are also implemented (not covered in the screencast):
 
 * Flicker-free screen
 * Ignoring non-printable characters
@@ -43,10 +43,10 @@ I wrote it from memory after watching the [relevant screencast][screencast] by
 
 * `Ctrl-Q` quits
 * `Ctrl-S` saves
-* `Ctrl-P` (mnemonic: previous), or the up arrow key, moves the cursor up
-* `Ctrl-N` (mnemonic: next), or the down arrow key, moves the cursor down
-* `Ctrl-F` (mnemonic: forward), or the right arrow key, moves the cursor right
-* `Ctrl-B` (mnemonic: backward), or the left arrow key, moves the cursor left
+* `Ctrl-P` (previous), or the `Up` arrow key, moves the cursor up
+* `Ctrl-N` (next), or the `Down` arrow key, moves the cursor down
+* `Ctrl-F` (forward), or the `Right` arrow key, moves the cursor right
+* `Ctrl-B` (backward), or the `Left` arrow key, moves the cursor left
 * `Ctrl-A` or `Home` moves the cursor to the beginning of the line
 * `Ctrl-E` or `End` moves the cursor to the end of the line
 * `Ctrl-H` or `Backspace` deletes the previous character
@@ -54,7 +54,7 @@ I wrote it from memory after watching the [relevant screencast][screencast] by
 * `Ctrl-U` deletes the line text before the cursor
 * `Ctrl-K` deletes the line text after (and including) the cursor
 * `Ctrl--` undoes the last change
-* `Ctrl-R` redoes the last change (mnemonic: redo)
+* `Ctrl-R` redoes the last change
 
 ## Roadmap
 
