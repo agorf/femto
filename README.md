@@ -32,6 +32,7 @@ The following are also implemented (not covered in the screencast):
 * Deleting the character at the cursor when at the end of a line joins lines
 * Deleting the line text before the cursor
 * Deleting the line text after (and including) the cursor
+* Support for arrow, `Backspace`, `Delete`, `Home` and `End` keys
 
 ## Usage
 
