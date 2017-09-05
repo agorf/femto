@@ -264,10 +264,7 @@ module Femto
     end
 
     def insert_char(char, row, col)
-      with_copy do |b|
-        b.lines[row] ||= '' # in case the file is empty
-        b.lines[row].insert(col, char)
-      end
+      with_copy {|b| b.lines[row].insert(col, char) }
     end
 
     def break_line(row, col)
