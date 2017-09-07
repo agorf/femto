@@ -2,6 +2,8 @@
 
 A minimal text editor written for fun in plain Ruby with no dependencies.
 
+[![asciicast](https://asciinema.org/a/136688.png)](https://asciinema.org/a/136688)
+
 I wrote it from memory after watching the [relevant screencast][screencast] by
 [Gary Bernhardt][]. It supports:
 
