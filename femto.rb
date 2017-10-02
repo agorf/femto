@@ -102,11 +102,9 @@ module Femto
     end
 
     def up
-      bufcur = BufferCursor.new(buffer, cursor)
+      return if buffer_cursor.first_line?
 
-      return if bufcur.first_line?
-
-      if bufcur.top_edge?
+      if buffer_cursor.top_edge?
         @buffer = buffer.scroll_up
       else
         @cursor = cursor.up
@@ -114,25 +112,26 @@ module Femto
     end
 
     def down
-      bufcur = BufferCursor.new(buffer, cursor)
+      return if buffer_cursor.last_line?
 
-      return if bufcur.last_line?
-
-      if bufcur.bottom_edge?
-        @buffer = buffer.scroll_down
+      if buffer_cursor.bottom_edge?
+        self.buffer = buffer.scroll_down
       else
-        @cursor = cursor.down
+        self.cursor = cursor.down
+
+        if buffer_cursor.exceeds_line?
+          @cursor.col = buffer_cursor.row_line_length
+        end
       end
 
-      #buffer.offset_x = [buffer.row_length(cursor.row) - buffer.cols + 1, 0].max
-      #@cursor.col = buffer.row_length(cursor.row) - buffer.offset_x # FIXME
+      if buffer_cursor.scroll_buffer?
+        buffer_cursor.auto_scroll!
+      end
     end
 
     def right
-      bufcur = BufferCursor.new(buffer, cursor)
-
-      if bufcur.end_of_line?
-        unless bufcur.last_line?
+      if buffer_cursor.end_of_line?
+        unless buffer_cursor.last_line?
           down
           line_home
         end
@@ -285,6 +284,22 @@ module Femto
         data.split(line_sep)
       end
     end
+
+    protected
+
+    def buffer=(buffer)
+      @buffer = buffer_cursor.buffer = buffer
+    end
+
+    def cursor=(cursor)
+      @cursor = buffer_cursor.cursor = cursor
+    end
+
+    private
+
+    def buffer_cursor
+      @buffer_cursor ||= BufferCursor.new(buffer, cursor)
+    end
   end
 
   class Buffer
@@ -313,6 +328,11 @@ module Femto
     # TODO make private?
     def line_length(row)
       lines[row].size
+    end
+
+    # TODO remove?
+    def row_line_length(row)
+      line_length(offset_y + row)
     end
 
     def delete_char(row, col)
@@ -365,15 +385,6 @@ module Femto
     # TODO keep?
     def rows
       ROWS
-    end
-
-    # TODO rename?
-    def row_length(row)
-      line_length(offset_y + row)
-    end
-
-    def max_offset_y
-      lines_count - rows
     end
 
     private
@@ -454,6 +465,7 @@ module Femto
 
   class BufferCursor
     attr_reader :buffer, :cursor
+    attr_writer :buffer, :cursor
 
     def initialize(buffer, cursor)
       @buffer = buffer
@@ -461,15 +473,15 @@ module Femto
     end
 
     def first_line?
-      row == 0
+      buffer_row == 0
     end
 
     def last_line?
-      row == buffer.lines_count - 1
+      buffer_row == buffer.lines_count - 1
     end
 
     def end_of_line?
-      col == buffer.line_length(row)
+      buffer_col == row_line_length
     end
 
     def top_edge?
@@ -480,13 +492,43 @@ module Femto
       cursor.row == buffer.rows - 1
     end
 
+    def exceeds_line?
+      buffer_col > row_line_length
+    end
+
+    def row_line_length
+      buffer.line_length(buffer_row)
+    end
+
+    def auto_scroll_buffer!
+      scroll_up    = buffer.offset_y - buffer.row
+      scroll_down  = buffer.offset_y + buffer.rows - buffer.row
+      scroll_left  = buffer_col < buffer.offset_x
+      scroll_right = buffer_col >= buffer.offset_x + buffer.cols
+
+      if scroll_up > 0
+        buffer.offset_y = buffer.offset_y - scroll_up
+      elsif scroll_down > 0
+      end
+
+      hhhhh
+      a
+      b
+      c
+      d
+
+      if scroll_left
+      elsif scroll_right
+      end
+    end
+
     private
 
-    def row
+    def buffer_row
       buffer.offset_y + cursor.row
     end
 
-    def col
+    def buffer_col
       buffer.offset_x + cursor.col
     end
   end
