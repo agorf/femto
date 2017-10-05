@@ -105,10 +105,12 @@ module Femto
       return if buffer_cursor.first_line?
 
       if buffer_cursor.top_edge?
-        @buffer = buffer.scroll_up
+        self.buffer = buffer.scroll_up
       else
-        @cursor = cursor.up
+        self.cursor = cursor.up
       end
+
+      buffer_cursor.auto_scroll_buffer!
     end
 
     def down
@@ -119,32 +121,24 @@ module Femto
       else
         self.cursor = cursor.down
 
-        if buffer_cursor.exceeds_line?
-          @cursor.col = buffer_cursor.row_line_length
-        end
-      end
+        scroll_left = buffer.offset_x + buffer.rows - buffer_cursor.row_line_length
 
-      if buffer_cursor.scroll_buffer?
-        buffer_cursor.auto_scroll!
+        if scroll_left > 0
+          buffer.offset_x -= scroll_left
+        end
       end
     end
 
     def right
       if buffer_cursor.end_of_line?
-        unless buffer_cursor.last_line?
-          down
-          line_home
-        end
-      elsif cursor.col == buffer.cols - 1
-        max_offset_x = buffer.row_length(cursor.row) - buffer.cols + 1
+        return if buffer_cursor.last_line?
 
-        if max_offset_x > 0
-          if buffer.offset_x < max_offset_x
-            @buffer = buffer.right
-          end
-        end
+        down
+        line_end
+      elsif buffer_cursor.right_edge?
+        self.buffer = buffer.scroll_right
       else
-        @cursor = cursor.right
+        self.cursor = cursor.right
       end
     end
 
@@ -161,6 +155,7 @@ module Femto
       end
 
       #@cursor = cursor.clamp(buffer)
+      buffer_cursor.auto_scroll_buffer!
     end
 
     def backspace
@@ -369,11 +364,11 @@ module Femto
       with_copy(offset_x, offset_y + 1)
     end
 
-    def right
+    def scroll_right
       with_copy(offset_x + 1, offset_y)
     end
 
-    def left
+    def scroll_left
       with_copy(offset_x - 1, offset_y)
     end
 
@@ -481,6 +476,7 @@ module Femto
     end
 
     def end_of_line?
+      $stderr.puts "#{buffer_col} #{row_line_length}"
       buffer_col == row_line_length
     end
 
@@ -492,8 +488,8 @@ module Femto
       cursor.row == buffer.rows - 1
     end
 
-    def exceeds_line?
-      buffer_col > row_line_length
+    def right_edge?
+      cursor.col == buffer.cols - 1
     end
 
     def row_line_length
@@ -501,24 +497,25 @@ module Femto
     end
 
     def auto_scroll_buffer!
-      scroll_up    = buffer.offset_y - buffer.row
-      scroll_down  = buffer.offset_y + buffer.rows - buffer.row
-      scroll_left  = buffer_col < buffer.offset_x
-      scroll_right = buffer_col >= buffer.offset_x + buffer.cols
+      scroll_up    = buffer.offset_y - buffer_row
+      scroll_down  = buffer_row - (buffer.offset_y + buffer.rows)
+      scroll_left  = buffer.offset_x - buffer_col
+      scroll_right = buffer_col - (buffer.offset_x + buffer.cols)
 
       if scroll_up > 0
-        buffer.offset_y = buffer.offset_y - scroll_up
+        $stderr.puts "scrolling up by #{scroll_up}"
+        buffer.offset_y -= scroll_up
       elsif scroll_down > 0
+        $stderr.puts "scrolling down by #{scroll_down}"
+        buffer.offset_y += scroll_down
       end
 
-      hhhhh
-      a
-      b
-      c
-      d
-
-      if scroll_left
-      elsif scroll_right
+      if scroll_left > 0
+        $stderr.puts "scrolling left by #{scroll_left}"
+        buffer.offset_x -= scroll_left
+      elsif scroll_right > 0
+        $stderr.puts "scrolling right by #{scroll_right}"
+        buffer.offset_x += scroll_right
       end
     end
 
